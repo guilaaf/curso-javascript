@@ -36,7 +36,7 @@
         <button class="btn btn-primary text-center" type="button">
             Importar Negociações
         </button>
-        <button class="btn btn-primary text-center" type="button">
+        <button class="btn btn-primary text-center" type="button" onclick="controller.limparNegociacoes(event)">
             Apagar
         </button>
     </div> 
@@ -46,7 +46,9 @@
     <div id="negociacoesView"></div>
     
     <script src="js/app/helpers/DateHelper.js"></script>
+    <script src="js/app/models/Observable.js"></script>
     <script src="js/app/models/Negociacao.js"></script>
+    <script src="js/app/models/NegociacaoRepository.js"></script>
     <script src="js/app/models/Mensagem.js"></script>
     <script src="js/app/controllers/NegociacaoController.js"></script>
     <script src="js/app/views/View.js"></script>
