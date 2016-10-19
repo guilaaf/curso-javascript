@@ -7,39 +7,19 @@ class NegociacaoController {
         this._inputValor = $('#valor');
         this._tbody = $('table tbody');
         this._negociacoes = [];
+        this._negociacoesView = new NegociacoesView($('#negociacoesView'));
+        
+        this._negociacoesView.update(this._negociacoes);
     }
     
     adicionarNegociacao(event) {
         event.preventDefault();
         
         let neg = new Negociacao(this._inputData.value, this._inputQuantidade.value, this._inputValor.value);
+        
         this._negociacoes.push(neg);
-        
-        this._adicionarLinhaTabela(neg);
+        this._negociacoesView.update(this._negociacoes);
         this._limparFormulario();
-    }
-    
-    _adicionarLinhaTabela(negociacao) {
-        let tr = document.createElement('tr');
-        let td;
-
-        td = document.createElement('td');
-        td.textContent = negociacao.dataFormatada;
-        tr.appendChild(td);
-        
-        td = document.createElement('td');
-        td.textContent = negociacao.quantidade;
-        tr.appendChild(td);
-        
-        td = document.createElement('td');
-        td.textContent = negociacao.valor;
-        tr.appendChild(td);
-        
-        td = document.createElement('td');
-        td.textContent = negociacao.volume;
-        tr.appendChild(td);
-   
-        this._tbody.appendChild(tr);
     }
     
     _limparFormulario() {
