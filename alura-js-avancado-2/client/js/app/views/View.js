@@ -4,8 +4,8 @@ class View {
         this._elementoRaiz = elementoRaiz;
     }
     
-    update(mensagem) {
-        this._elementoRaiz.innerHTML = this._template(mensagem);
+    update(model) {
+        this._elementoRaiz.innerHTML = this._template(model);
     }
     
     _template() {

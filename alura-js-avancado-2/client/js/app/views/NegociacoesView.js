@@ -13,12 +13,12 @@ class NegociacoesView extends View {
             </thead>
 
             <tbody>
-                ${negociacaoRepository.negociacoes.map(item => `
+                ${negociacaoRepository.negociacoes.map(negociacao => `
                     <tr>
-                        <td>${item.dataFormatada}</td>
-                        <td>${item.quantidade}</td>
-                        <td>${item.valor}</td>
-                        <td>${item.volume}</td>
+                        <td>${negociacao.dataFormatada}</td>
+                        <td>${negociacao.quantidade}</td>
+                        <td>${negociacao.valor}</td>
+                        <td>${negociacao.volume}</td>
                     </tr>
                 `).join('')}
             </tbody>

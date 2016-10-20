@@ -8,12 +8,12 @@ class NegociacaoController {
         this._inputValor = $('#valor');
         
         this._negociacaoRepository = new NegociacaoRepository();
-        this._negociacaoRepository.adicionarListener(model => this._negociacoesView.update(model)); 
         this._negociacoesView = new NegociacoesView($('#negociacoesView'));
-        this._negociacoesView.update(this._negociacaoRepository);
-        
         this._mensagem = new Mensagem();
         this._mensagemView = new MensagemView($('#mensagemView'));
+        
+        this._negociacaoRepository.adicionarListener(model => this._negociacoesView.update(model)); 
+        this._negociacoesView.update(this._negociacaoRepository);
     }
     
     adicionarNegociacao(event) {
