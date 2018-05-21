@@ -1,6 +1,6 @@
 class NegociacoesView extends View {
     
-    _template(negociacoes) {
+    _template(lista) {
         return `
         <table class="table table-hover table-bordered">
             <thead>
@@ -13,7 +13,7 @@ class NegociacoesView extends View {
             </thead>
 
             <tbody>
-                ${negociacoes.map(item => `
+                ${lista.negociacoes.map(item => `
                     <tr>
                         <td>${item.dataFormatada}</td>
                         <td>${item.quantidade}</td>
@@ -25,7 +25,7 @@ class NegociacoesView extends View {
 
             <tfoot>
                 <th colspan="3">VOLUME TOTAL</th>
-                <td>${negociacoes.reduce((total, neg) => total + neg.volume, 0.0)}</td>
+                <td>${lista.total}</td>
             </tfoot>
         </table>
         `;
