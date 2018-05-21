@@ -1,7 +1,18 @@
 class MensagemView extends View {
     
     _template(mensagem) {
-        return mensagem.texto ? `<p class="alert alert-info">${mensagem.texto}</p>` : '';
+        if (mensagem && mensagem.texto) {
+            return `
+                <p class="alert alert-info">
+                    <i class="glyphicon glyphicon-exclamation-sign"></i>
+                    ${mensagem.texto}
+                    <i class="glyphicon glyphicon-remove pull-right"
+                          onclick="this.parentElement.style.display='none';"></i>
+                </p>
+            `;
+        } else {
+            return '';
+        }
     }
 }
 

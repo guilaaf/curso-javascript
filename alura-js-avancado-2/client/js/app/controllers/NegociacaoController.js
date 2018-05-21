@@ -7,13 +7,16 @@ class NegociacaoController {
         this._inputQuantidade = $('#quantidade');
         this._inputValor = $('#valor');
         
-        this._negociacaoRepository = new NegociacaoRepository();
-        this._negociacoesView = new NegociacoesView($('#negociacoesView'));
-        this._mensagem = new Mensagem();
-        this._mensagemView = new MensagemView($('#mensagemView'));
-        
-        this._negociacaoRepository.adicionarListener(model => this._negociacoesView.update(model)); 
-        this._negociacoesView.update(this._negociacaoRepository);
+        this._negociacaoRepository = new Binding(
+            new NegociacaoRepository(),
+            new NegociacoesView($('#negociacoesView')),
+            'adicionar', 'esvaziar'
+        );
+        this._mensagem = new Binding(
+            new Mensagem(),
+            new MensagemView($('#mensagemView')),
+            'texto'
+        );
     }
     
     adicionarNegociacao(event) {
@@ -22,20 +25,27 @@ class NegociacaoController {
         let neg = new Negociacao(this._inputData.value, this._inputQuantidade.value, this._inputValor.value);
         
         this._negociacaoRepository.adicionar(neg);
-        
         this._mensagem.texto = 'Negociação adicionada com sucesso';
-        this._mensagemView.update(this._mensagem);
         
         this._limparFormulario();
+    }
+    
+    importarNegociacoes(event) {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', 'negociacoes/semana');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                
+            }
+        };
+        xhr.send();
     }
     
     limparNegociacoes(event) {
         event.preventDefault();
         
         this._negociacaoRepository.esvaziar();
-        
         this._mensagem.texto = '';
-        this._mensagemView.update(this._mensagem);
     }
     
     _limparFormulario() {

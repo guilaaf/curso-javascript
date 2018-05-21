@@ -1,4 +1,4 @@
-class DateHelper {
+class DateConverter {
     
     constructor() {
         throw new Error('DateHelper can not be instatiated');

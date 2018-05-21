@@ -33,7 +33,7 @@
     </form>
     
     <div class="text-center">
-        <button class="btn btn-primary text-center" type="button">
+        <button class="btn btn-primary text-center" type="button" onclick="controller.importarNegociacoes(event)">
             Importar Negociações
         </button>
         <button class="btn btn-primary text-center" type="button" onclick="controller.limparNegociacoes(event)">
@@ -45,7 +45,9 @@
     
     <div id="negociacoesView"></div>
     
-    <script src="js/app/helpers/DateHelper.js"></script>
+    <script src="js/app/helpers/Binding.js"></script>
+    <script src="js/app/helpers/DateConverter.js"></script>
+    <script src="js/app/helpers/ProxyFactory.js"></script>
     <script src="js/app/models/Observable.js"></script>
     <script src="js/app/models/Negociacao.js"></script>
     <script src="js/app/models/NegociacaoRepository.js"></script>

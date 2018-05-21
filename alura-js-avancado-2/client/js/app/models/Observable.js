@@ -9,7 +9,7 @@ class Observable {
     }
     
     notificarListeners() {
-        this._listeners.forEach(listener => listener(this));
+        this._listeners.forEach(listenerFunction => listenerFunction(this));
     }
 }
 

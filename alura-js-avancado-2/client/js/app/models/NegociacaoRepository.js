@@ -1,7 +1,6 @@
-class NegociacaoRepository extends Observable {
+class NegociacaoRepository {
     
     constructor() {
-        super();
         this._negociacoes = [];
     }
     
@@ -15,12 +14,10 @@ class NegociacaoRepository extends Observable {
     
     adicionar(negociacao) {
         this._negociacoes.push(negociacao);
-        this.notificarListeners();
     }
     
     esvaziar() {
         this._negociacoes.length = 0;
-        this.notificarListeners();
     }
     
 }

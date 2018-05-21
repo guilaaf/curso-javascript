@@ -6,7 +6,7 @@ class Negociacao {
         this._valor = valor;
         
         if (typeof data === "string") {
-            this._data = DateHelper.text2Date(data);
+            this._data = DateConverter.text2Date(data);
         } else if (data instanceof Date) {
             this._data = new Date(data.getTime());
         }
@@ -19,7 +19,7 @@ class Negociacao {
     }
     
     get dataFormatada() {
-        return DateHelper.date2Text(this._data);
+        return DateConverter.date2Text(this._data);
     }
 
     get quantidade() {
