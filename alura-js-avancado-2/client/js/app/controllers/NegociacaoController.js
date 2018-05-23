@@ -23,22 +23,23 @@ class NegociacaoController {
         event.preventDefault();
         
         let neg = new Negociacao(this._inputData.value, this._inputQuantidade.value, this._inputValor.value);
-        
         this._negociacaoRepository.adicionar(neg);
-        this._mensagem.texto = 'Negociação adicionada com sucesso';
         
+        this._mensagem.texto = 'Negociação adicionada com sucesso';
         this._limparFormulario();
     }
     
     importarNegociacoes(event) {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', 'negociacoes/semana');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                
+        let service = new NegociacaoService();
+        service.obterNegociacoesDaSemana((erro, negociacoes) => {
+            if (erro) {
+                this._mensagem.texto = erro;
+                return;
             }
-        };
-        xhr.send();
+            
+            negociacoes.forEach(neg => this._negociacaoRepository.adicionar(neg));
+            this._mensagem.texto = 'Negociações importadas com sucesso';
+        });
     }
     
     limparNegociacoes(event) {
