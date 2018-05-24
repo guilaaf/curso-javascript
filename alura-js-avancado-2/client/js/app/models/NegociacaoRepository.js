@@ -20,6 +20,10 @@ class NegociacaoRepository {
         this._negociacoes.length = 0;
     }
     
+    ordenar(criterio) {
+        this._negociacoes.sort(criterio); 
+    }
+    
 }
 
 

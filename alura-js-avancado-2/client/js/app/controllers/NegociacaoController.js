@@ -10,13 +10,16 @@ class NegociacaoController {
         this._negociacaoRepository = new Binding(
             new NegociacaoRepository(),
             new NegociacoesView($('#negociacoesView')),
-            'adicionar', 'esvaziar'
+            'adicionar', 'esvaziar', 'ordenar'
         );
         this._mensagem = new Binding(
             new Mensagem(),
             new MensagemView($('#mensagemView')),
             'texto'
         );
+
+        this._ordenacaoAtual = '';
+        this._direcaoOrdenacao = 1;
     }
     
     adicionarNegociacao(event) {
@@ -31,15 +34,12 @@ class NegociacaoController {
     
     importarNegociacoes(event) {
         let service = new NegociacaoService();
-        service.obterNegociacoesDaSemana((erro, negociacoes) => {
-            if (erro) {
-                this._mensagem.texto = erro;
-                return;
-            }
-            
-            negociacoes.forEach(neg => this._negociacaoRepository.adicionar(neg));
-            this._mensagem.texto = 'Negociações importadas com sucesso';
-        });
+        service.obterTodasNegociacoes()
+            .then(negociacoes => {
+                negociacoes.forEach(neg => this._negociacaoRepository.adicionar(neg));
+                this._mensagem.texto = 'Negociações importadas com sucesso';
+            })
+            .catch(erro => this._mensagem.texto = erro);
     }
     
     limparNegociacoes(event) {
@@ -47,6 +47,12 @@ class NegociacaoController {
         
         this._negociacaoRepository.esvaziar();
         this._mensagem.texto = '';
+    }
+    
+    ordenarNegociacoes(campo) {
+        this._direcaoOrdenacao = (campo === this._ordenacaoAtual) ? -1 * this._direcaoOrdenacao : 1;
+        this._negociacaoRepository.ordenar((a,b) => (a[campo] - b[campo]) * this._direcaoOrdenacao);
+        this._ordenacaoAtual = campo;
     }
     
     _limparFormulario() {

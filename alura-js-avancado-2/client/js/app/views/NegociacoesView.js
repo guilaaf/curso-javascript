@@ -5,10 +5,10 @@ class NegociacoesView extends View {
         <table class="table table-hover table-bordered">
             <thead>
                 <tr>
-                    <th>DATA</th>
-                    <th>QUANTIDADE</th>
-                    <th>VALOR</th>
-                    <th>VOLUME</th>
+                    <th onclick="controller.ordenarNegociacoes('data')">DATA</th>
+                    <th onclick="controller.ordenarNegociacoes('quantidade')">QUANTIDADE</th>
+                    <th onclick="controller.ordenarNegociacoes('valor')">VALOR</th>
+                    <th onclick="controller.ordenarNegociacoes('volume')">VOLUME</th>
                 </tr>
             </thead>
 
