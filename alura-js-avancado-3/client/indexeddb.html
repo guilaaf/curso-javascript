@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Aprendendo IndexedDB</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script src="js/app/helpers/DateConverter.js"></script>
+        <script src="js/app/models/Negociacao.js"></script>
+        <script>
+            
+            var connection;
+            var openRequest = window.indexedDB.open('aluraframe', 1);
+            
+            openRequest.onupgradeneeded = function(evt) {
+                console.log('cria ou altera um banco existente');
+                
+                // evt.target.result é uma instância de IDBDatabase
+                let conn = evt.target.result;
+                conn.createObjectStore('negociacoes', {autoIncrement: true});
+            };
+            
+            openRequest.onsuccess = function(evt) {
+                console.log('conexão obtida com sucesso');
+                connection = evt.target.result;
+            };
+            
+            openRequest.onerror = function(evt) {
+                console.log(evt.target.error);
+            };
+            
+            function adicionar(data, quantidade, valor) {
+                let transaction = connection.transaction(['negociacoes'], 'readwrite');
+                let store = transaction.objectStore('negociacoes');
+                let request = store.add(new Negociacao(data, quantidade, valor));
+                
+                request.onsuccess = e => {
+                    console.log('Negociação incluída com sucesso');
+                };
+
+                request.onerror = e => {
+                    console.log('Não foi possível incluir a negociação');
+                };
+            }
+            
+            function listar() {
+                let transaction = connection.transaction(['negociacoes'], 'readwrite');
+                let store = transaction.objectStore('negociacoes');
+                let cursor = store.openCursor();
+                let negociacoes = [];
+                
+                cursor.onsuccess = evt => {
+                    console.log('próximo item do store');
+                    let item = evt.target.result;
+                    if (item) {
+                        let dados = item.value;
+                        negociacoes.push(new Negociacao(dados._data, dados._quantidade, dados._valor));
+                        item.continue();
+                    } else {
+                        console.log(negociacoes);
+                    }
+                };
+
+                cursor.onerror = evt => {
+                    console.log('Não foi possível listar as negociações');
+                };
+            }
+            
+        </script>
+    </body>
+</html>
