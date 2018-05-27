@@ -51,7 +51,6 @@
                 let negociacoes = [];
                 
                 cursor.onsuccess = evt => {
-                    console.log('próximo item do store');
                     let item = evt.target.result;
                     if (item) {
                         let dados = item.value;
