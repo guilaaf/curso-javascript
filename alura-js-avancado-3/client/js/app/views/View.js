@@ -1,16 +1,61 @@
-class View {
-    
-    constructor(elementoRaiz) {
-        this._elementoRaiz = elementoRaiz;
-    }
-    
-    update(model) {
-        this._elementoRaiz.innerHTML = this._template(model);
-    }
-    
-    _template() {
-        throw new Error('o método _template deve ser implementado');
-    }
-}
+'use strict';
 
+System.register([], function (_export, _context) {
+    "use strict";
 
+    var _createClass, View;
+
+    function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+        }
+    }
+
+    return {
+        setters: [],
+        execute: function () {
+            _createClass = function () {
+                function defineProperties(target, props) {
+                    for (var i = 0; i < props.length; i++) {
+                        var descriptor = props[i];
+                        descriptor.enumerable = descriptor.enumerable || false;
+                        descriptor.configurable = true;
+                        if ("value" in descriptor) descriptor.writable = true;
+                        Object.defineProperty(target, descriptor.key, descriptor);
+                    }
+                }
+
+                return function (Constructor, protoProps, staticProps) {
+                    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+                    if (staticProps) defineProperties(Constructor, staticProps);
+                    return Constructor;
+                };
+            }();
+
+            _export('View', View = function () {
+                function View(elementoRaiz) {
+                    _classCallCheck(this, View);
+
+                    this._elementoRaiz = elementoRaiz;
+                }
+
+                _createClass(View, [{
+                    key: 'update',
+                    value: function update(model) {
+                        this._elementoRaiz.innerHTML = this._template(model);
+                    }
+                }, {
+                    key: '_template',
+                    value: function _template() {
+                        throw new Error('o método _template deve ser implementado');
+                    }
+                }]);
+
+                return View;
+            }());
+
+            _export('View', View);
+        }
+    };
+});
+//# sourceMappingURL=View.js.map
