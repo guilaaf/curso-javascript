@@ -1,0 +1,22 @@
+{
+  "name": "alura-node-1",
+  "version": "1.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "description": "Projeto do curso de nodejs da Alura",
+  "author": "Guilherme Lima",
+  "contributors": [],
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-load": "^1.1.16",
+    "mysql": "^2.15.0"
+  }
+}

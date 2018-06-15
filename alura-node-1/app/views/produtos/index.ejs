@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Casa do Código</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            table, tr, th, td {
+                border: 1px solid #aaa;
+                border-collapse: collapse;
+            }
+            th { text-align: left; }
+        </style>
+    </head>
+    <body>
+        <h1>Lista de Produtos</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+            </tr>
+<% for (var i = 0; i < lista.length; i++) { %>
+            <tr>
+                <td><%= lista[i].id %></td>
+                <td><%= lista[i].titulo %></td>
+                <td><%= lista[i].descricao %></td>
+                <td><%= lista[i].preco %></td>
+            </tr>
+<% } %>
+        </table>
+    </body>
+</html>

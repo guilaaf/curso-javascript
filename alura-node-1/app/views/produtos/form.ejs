@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Casa do Código</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/lib/bootstrap-3.3.7/css/bootstrap.min.css"/>
+        <style>
+            table, tr, th, td {
+                border: 1px solid #aaa;
+                border-collapse: collapse;
+            }
+            th { text-align: left; }
+        </style>
+    </head>
+    <body>
+        <form action="/produtos/form" method="post">
+            <div>
+                <label for="titulo">Titulo</label>
+                <input type="text" id="titulo" name="titulo" placeholder="coloque o titulo"/>
+            </div>
+            <div>
+                <label for="preco">Preço</label>
+                <input type="text" id="preco" name="preco" placeholder="150.25"/>
+            </div>
+            <div>
+                <label for="descricao">Descrição</label>
+                <textarea cols="20" rows="10"  id="descricao" name="descricao" placeholder="fale sobre o livro"></textarea>
+            </div>
+
+            <input type="submit" value="gravar"/>
+        </form>
+    </body>
+</html>
