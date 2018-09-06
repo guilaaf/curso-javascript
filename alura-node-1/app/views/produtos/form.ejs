@@ -6,26 +6,36 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="/lib/bootstrap-3.3.7/css/bootstrap.min.css"/>
         <style>
-            table, tr, th, td {
-                border: 1px solid #aaa;
-                border-collapse: collapse;
+            .erro {
+                color: red;
+                border: 1px dashed #999;
+                margin: 10px;
             }
-            th { text-align: left; }
         </style>
     </head>
     <body>
+        <h1>Cadastro de Produto</h1>
+<% if (erros) { %>
+        <div class="erro">
+            <ul>
+<% for (var i = 0; i < erros.length; i++) { %>
+                <li><%= erros[i].param %> - <%= erros[i].msg %></li>
+<% } %>
+            </ul>
+        </div>
+<% } %>
         <form action="/produtos/form" method="post">
             <div>
                 <label for="titulo">Titulo</label>
-                <input type="text" id="titulo" name="titulo" placeholder="coloque o titulo"/>
+                <input type="text" id="titulo" name="titulo" placeholder="coloque o titulo" value="<%=produto.titulo%>"/>
             </div>
             <div>
                 <label for="preco">Preço</label>
-                <input type="text" id="preco" name="preco" placeholder="150.25"/>
+                <input type="text" id="preco" name="preco" placeholder="150.25" value="<%=produto.preco%>"/>
             </div>
             <div>
                 <label for="descricao">Descrição</label>
-                <textarea cols="20" rows="10"  id="descricao" name="descricao" placeholder="fale sobre o livro"></textarea>
+                <textarea cols="20" rows="10"  id="descricao" name="descricao" placeholder="fale sobre o livro"><%=produto.descricao%></textarea>
             </div>
 
             <input type="submit" value="gravar"/>
