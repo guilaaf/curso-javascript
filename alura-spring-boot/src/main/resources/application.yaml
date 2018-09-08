@@ -1,0 +1,21 @@
+spring:
+    datasource:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3311/listavip
+        username: root
+        password: root
+        
+server:
+    port: 9000
+        
+logging:
+    level:
+        ROOT: ERROR
+        org.springframework: INFO
+        br.com.treinamento: DEBUG
+        
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
